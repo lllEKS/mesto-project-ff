@@ -1,16 +1,42 @@
-@import url('./__description/profile__description.css');
-@import url('./__add-button/profile__add-button.css');
-@import url('./__edit-button/profile__edit-button.css');
-@import url('./__info/profile__info.css');
-@import url('./__title/profile__title.css');
-@import url('./__image/profile__image.css');
+@import url("./__description/profile__description.css");
+@import url("./__add-button/profile__add-button.css");
+@import url("./__edit-button/profile__edit-button.css");
+@import url("./__info/profile__info.css");
+@import url("./__title/profile__title.css");
+@import url("./__image/profile__image.css");
 
 .profile {
-  font-family: 'Inter', Arial, sans-serif;
+  font-family: "Inter", Arial, sans-serif;
   color: #fff;
   display: flex;
   align-items: center;
   padding: 36px 0;
+}
+
+.profile__avatar {
+  position: relative;
+}
+
+.profile__avatar::after {
+  content: "";
+  z-index: 1;
+  opacity: 0.8;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.profile__avatar:hover::after {
+  background: rgba(0, 0, 0, 0.8);
+  cursor: pointer;
+  background-image: url(/src/images/edit-icon.svg);
+  background-repeat: no-repeat;
+  background-position: 38%;
+  text-align: right;
+  white-space: nowrap;
+  /* animation: anim 0.3s linear forwards; */
 }
 
 @media screen and (max-width: 480px) {

@@ -7,7 +7,7 @@ function handleEscKeyUp(e) {
 }
 
 // Функция открытия модального окна
-function openPopup(popup) {
+export function openPopup(popup) {
   popup.classList.add("popup_is-opened");
   popup.classList.add("popup_is-animated");
   document.addEventListener("keydown", handleEscKeyUp);
@@ -15,7 +15,7 @@ function openPopup(popup) {
 }
 
 // Функция закрытия модального окна
-function closePopup(popup) {
+export function closePopup(popup) {
   popup.classList.remove("popup_is-opened");
   document.removeEventListener("keydown", handleEscKeyUp);
   popup.removeEventListener("click", handleCloseOverlay);
@@ -27,5 +27,3 @@ function handleCloseOverlay(e) {
     closePopup(e.currentTarget);
   }
 }
-
-export { openPopup, closePopup };
