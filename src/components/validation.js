@@ -94,5 +94,3 @@ export const clearValidation = (formElement) => {
 };
 
 enableValidation();
-
-
