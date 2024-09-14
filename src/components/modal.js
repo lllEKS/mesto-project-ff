@@ -18,7 +18,7 @@ export function openPopup(popup) {
 export function closePopup(popup) {
   popup.classList.remove("popup_is-opened");
   document.removeEventListener("keydown", handleEscKeyUp);
-  popup.removeEventListener("click", handleCloseOverlay);
+  popup.removeEventListener("mousedown", handleCloseOverlay);
 }
 
 // Функция обработчик закрытия модального окна через оверлей

@@ -1,7 +1,11 @@
 import "./pages/index.css";
 import { createCard, deleteCard, likeCard } from "./components/card.js";
 import { openPopup, closePopup } from "./components/modal.js";
-import { enableValidation, clearValidation } from "./components/validation.js";
+import {
+  enableValidation,
+  clearValidation,
+  validationConfig,
+} from "./components/validation.js";
 import {
   getUserRequest,
   loadCards,
@@ -52,7 +56,7 @@ let cardId;
 // Функция открытия модального окна картинки
 function openImage(link, alt) {
   popupImageElement.src = link;
-  popupImageElement.link = alt;
+  popupImageElement.alt = alt;
   popupCaption.textContent = alt;
   openPopup(popupImage);
 }
@@ -60,7 +64,7 @@ function openImage(link, alt) {
 // Обработчик клика открытия модального окна редактирования аватарки
 profileOpenAvatar.addEventListener("click", function () {
   openPopup(modalNewAvatar);
-  clearValidation(modalNewAvatar, enableValidation);
+  clearValidation(modalNewAvatar, validationConfig, enableValidation);
 });
 
 // Обработчик клика открытия модального окна профиля
@@ -69,13 +73,13 @@ profileEditButton.addEventListener("click", function () {
   jobInput.value = profileDescription.textContent;
 
   openPopup(modalEdit);
-  clearValidation(modalEdit, enableValidation);
+  clearValidation(modalEdit, validationConfig, enableValidation);
 });
 
 // Обработчик клика открытия модального окна добавления новой карточки
 profileAddButton.addEventListener("click", function () {
   openPopup(modalNewCard);
-  clearValidation(modalNewCard, enableValidation);
+  clearValidation(modalNewCard, validationConfig, enableValidation);
 });
 
 // Функция обработчик закрытия модального окна через кнопку
@@ -173,8 +177,6 @@ formElementEdit.addEventListener("submit", handleEditProfile);
 addCardForm.addEventListener("submit", addNewCardSubmit);
 avatarForm.addEventListener("submit", editAvatar);
 
-enableValidation();
-
 Promise.all([getUserRequest(), loadCards()])
   .then(([dataRes, cardRes]) => {
     userId = dataRes._id;
@@ -191,5 +193,6 @@ Promise.all([getUserRequest(), loadCards()])
   })
   .catch((err) => {
     console.log(err);
-  })
-  .finally(() => {});
+  });
+
+enableValidation(validationConfig);

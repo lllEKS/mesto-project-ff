@@ -17,15 +17,13 @@ export function createCard(
   const cardLikeButton = cardElement.querySelector(".card__like-button");
   const likeCounter = cardElement.querySelector(".like-counter");
 
-  //console.log(userId);
-  //console.log(cardId);
+ 
   cardImage.src = item.link;
   cardImage.alt = item.name;
   cardTitle.textContent = item.name;
   likeCounter.textContent = item.likes.length;
 
   if (item.owner._id !== userId) {
-    // console.log(userId);
     cardDeleteButton.remove();
   }
 

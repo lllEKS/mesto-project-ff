@@ -6,7 +6,7 @@ const config = {
   },
 };
 
-const response = (res) => {
+const checkResponse = (res) => {
   if (res.ok) {
     return res.json();
   }
@@ -17,14 +17,14 @@ export const getUserRequest = () => {
   return fetch(`${config.baseUrl}/users/me`, {
     method: "GET",
     headers: config.headers,
-  }).then(response);
+  }).then(checkResponse);
 };
 
 export const loadCards = () => {
   return fetch(`${config.baseUrl}/cards`, {
     method: "GET",
     headers: config.headers,
-  }).then(response);
+  }).then(checkResponse);
 };
 
 export const newAvatarApi = (link) => {
@@ -34,7 +34,7 @@ export const newAvatarApi = (link) => {
     body: JSON.stringify({
       avatar: link,
     }),
-  }).then(response);
+  }).then(checkResponse);
 };
 
 export const editProfileApi = (nameInput, jobInput) => {
@@ -45,7 +45,7 @@ export const editProfileApi = (nameInput, jobInput) => {
       name: nameInput,
       about: jobInput,
     }),
-  }).then(response);
+  }).then(checkResponse);
 };
 
 export const addNewCardApi = (name, link) => {
@@ -56,7 +56,7 @@ export const addNewCardApi = (name, link) => {
       name: name,
       link: link,
     }),
-  }).then(response);
+  }).then(checkResponse);
 };
 
 export const putLikeCard = (cardId) => {
@@ -66,7 +66,7 @@ export const putLikeCard = (cardId) => {
     body: JSON.stringify({
       _id: cardId,
     }),
-  }).then(response);
+  }).then(checkResponse);
 };
 
 export const deleteLikeCard = (cardId) => {
@@ -76,7 +76,7 @@ export const deleteLikeCard = (cardId) => {
     body: JSON.stringify({
       _id: cardId,
     }),
-  }).then(response);
+  }).then(checkResponse);
 };
 
 export const deleteDataCard = (cardId) => {
@@ -86,5 +86,5 @@ export const deleteDataCard = (cardId) => {
     body: JSON.stringify({
       _id: cardId,
     }),
-  }).then(response);
+  }).then(checkResponse);
 };
