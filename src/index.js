@@ -1,11 +1,7 @@
 import "./pages/index.css";
 import { createCard, deleteCard, likeCard } from "./components/card.js";
 import { openPopup, closePopup } from "./components/modal.js";
-import {
-  enableValidation,
-  clearValidation,
-  validationConfig,
-} from "./components/validation.js";
+import { enableValidation, clearValidation } from "./components/validation.js";
 import {
   getUserRequest,
   loadCards,
@@ -52,6 +48,15 @@ const btnSubmitAddNewCard = document.querySelector(
 
 let userId;
 let cardId;
+
+const validationConfig = {
+  formSelector: ".popup__form",
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__button",
+  inactiveButtonClass: "popup__button-inactive",
+  inputErrorClass: "form__input_type_error",
+  errorClass: "form__input-error_active",
+};
 
 // Функция открытия модального окна картинки
 function openImage(link, alt) {
@@ -123,7 +128,6 @@ function editAvatar(e) {
     })
     .catch((err) => console.log(err))
     .finally(() => {
-      avatarForm.reset();
       renderLoading(false, btnSubmitAvatar);
     });
 }
